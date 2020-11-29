@@ -1,0 +1,2058 @@
+{
+	"info": {
+		"_postman_id": "afcf8ec2-e238-4810-bf55-a5ed02969b18",
+		"name": "TASK",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "TFS_20_Company admin should be able to assign task to the app users",
+			"item": [
+				{
+					"name": "TFS_62_A_1.0_Dashboard_User(Company admin)_Login_in_admin_panel Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "92417ffc-701a-421a-a204-5f2e4ba2d3f4",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Response time is less than 600ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(600);",
+									"});",
+									"",
+									"//create variable for json Data",
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"auth_token_company_admin\",jsonData.auth_token);",
+									"//Validate Schema for this URL",
+									"",
+									"var schema = {",
+									"    \"$schema\": \"http://json-schema.org/draft-07/schema\",",
+									"    \"$id\": \"http://example.com/example.json\",",
+									"    \"type\": \"object\",",
+									"    \"title\": \"The root schema\",",
+									"    \"description\": \"The root schema comprises the entire JSON document.\",",
+									"    \"default\": {},",
+									"    \"examples\": [",
+									"        {",
+									"            \"auth_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDM5MDI0MjMsImlhdCI6MTYwMzg5ODgyMywic3ViIjo1NDUsInVzZXJfdHlwZSI6IkRhc2hib2FyZCIsIm5hbWUiOiJmaXJzdCBsYXN0dXNlciIsImVtYWlsIjoicmFqaWJfOTk5QHlhaG9vLmNvbSIsIm1lbWJlcl90eXBlIjoyLCJjb21wYW55X2lkIjo0MDcsImRlc2lnbmF0aW9uIjpudWxsLCJkZXBhcnRtZW50IjpudWxsfQ.G3KXZpcWnlCh3MrytM6ShQ2CSXdQ3QmyvUMnBtBZTKE\",",
+									"            \"message\": \"Successfully logged in.\",",
+									"            \"status\": \"success\"",
+									"        }",
+									"    ],",
+									"    \"required\": [",
+									"        \"auth_token\",",
+									"        \"message\",",
+									"        \"status\"",
+									"    ],",
+									"    \"properties\": {",
+									"        \"auth_token\": {",
+									"            \"$id\": \"#/properties/auth_token\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The auth_token schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDM5MDI0MjMsImlhdCI6MTYwMzg5ODgyMywic3ViIjo1NDUsInVzZXJfdHlwZSI6IkRhc2hib2FyZCIsIm5hbWUiOiJmaXJzdCBsYXN0dXNlciIsImVtYWlsIjoicmFqaWJfOTk5QHlhaG9vLmNvbSIsIm1lbWJlcl90eXBlIjoyLCJjb21wYW55X2lkIjo0MDcsImRlc2lnbmF0aW9uIjpudWxsLCJkZXBhcnRtZW50IjpudWxsfQ.G3KXZpcWnlCh3MrytM6ShQ2CSXdQ3QmyvUMnBtBZTKE\"",
+									"            ]",
+									"        },",
+									"        \"message\": {",
+									"            \"$id\": \"#/properties/message\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The message schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"Successfully logged in.\"",
+									"            ]",
+									"        },",
+									"        \"status\": {",
+									"            \"$id\": \"#/properties/status\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The status schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"success\"",
+									"            ]",
+									"        }",
+									"    },",
+									"    \"additionalProperties\": true",
+									"}",
+									"",
+									"pm.test('Schema is valid', function () {",
+									"   var result=tv4.validateResult(pm.response.json(),schema);",
+									"});",
+									" ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"rajib@gmail.com\",\n    \"password\": \"Rajib1234\"\n\n}\n",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{url_auth}}/api/v1/field-force/auth/dashboard-user-login",
+							"host": [
+								"{{url_auth}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"field-force",
+								"auth",
+								"dashboard-user-login"
+							]
+						},
+						"description": "BRD:\nDashboard User (Techserve4u/Company admin) login in\nadmin panel\n\nObjective:\nAs a company admin, I want to login to the\nadmin panel so that I can avail of services available\naccording to my member type\n\nSE: Shiblu Ahmad\nPO: Pranto Majumder\nQA: Samsur Rahman Rajib\nReviewer: Pranto Majumder.\n\nAcceptance Criteria:\nI will get my login credentials from my super admin.\nIf I want to login as a techserve4u admin then I have to\nregister on techserve4u panel or if I want to login as a\ncompany admin then I have to register on the\ncompany panel.\n\nDependency: \nRegister Dashboard User should be able to log in to the\nadmin panel.\n\nMethod: Post\nBody:\n{\n    \"email\": \"rajib@gmail.com\",\n    \"password\": \"Rajib1234\"\n\n}\nExpected Result:\n{\n    \"auth_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDM5ODQwOTMsImlhdCI6MTYwMzk4MDQ5Mywic3ViIjo1NDUsInVzZXJfdHlwZSI6IkRhc2hib2FyZCIsIm5hbWUiOiJmaXJzdCBsYXN0dXNlciIsImVtYWlsIjoicmFqaWJfOTk5QHlhaG9vLmNvbSIsIm1lbWJlcl90eXBlIjoyLCJjb21wYW55X2lkIjo0MDcsImRlc2lnbmF0aW9uIjpudWxsLCJkZXBhcnRtZW50IjpudWxsfQ.OAIbMnWjnq0HZCqXW_gIWPY8tu0S_H1Irh7u_aTXbSU\",\n    \"message\": \"Successfully logged in.\",\n    \"status\": \"success\"\n}\nActual Result: \n{\n    \"auth_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDM5ODQwOTMsImlhdCI6MTYwMzk4MDQ5Mywic3ViIjo1NDUsInVzZXJfdHlwZSI6IkRhc2hib2FyZCIsIm5hbWUiOiJmaXJzdCBsYXN0dXNlciIsImVtYWlsIjoicmFqaWJfOTk5QHlhaG9vLmNvbSIsIm1lbWJlcl90eXBlIjoyLCJjb21wYW55X2lkIjo0MDcsImRlc2lnbmF0aW9uIjpudWxsLCJkZXBhcnRtZW50IjpudWxsfQ.OAIbMnWjnq0HZCqXW_gIWPY8tu0S_H1Irh7u_aTXbSU\",\n    \"message\": \"Successfully logged in.\",\n    \"status\": \"success\"\n}\n\nStatus Code: 200 OK\n\nTest Result: Pass"
+					},
+					"response": []
+				},
+				{
+					"name": "TFS_20_Company admin should be able to assign task to the app users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "05bdb20b-2252-4f69-b50a-1dda1b652138",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"pm.test(\"Response time is less than 600ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(600);",
+									"});",
+									"",
+									"//create variable for json Data",
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"//Validate Schema for this URL",
+									"",
+									"var schema = {",
+									"    \"$schema\": \"http://json-schema.org/draft-07/schema\",",
+									"    \"$id\": \"http://example.com/example.json\",",
+									"    \"type\": \"object\",",
+									"    \"title\": \"The root schema\",",
+									"    \"description\": \"The root schema comprises the entire JSON document.\",",
+									"    \"default\": {},",
+									"    \"examples\": [",
+									"        {",
+									"            \"auth_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDM5MDI0MjMsImlhdCI6MTYwMzg5ODgyMywic3ViIjo1NDUsInVzZXJfdHlwZSI6IkRhc2hib2FyZCIsIm5hbWUiOiJmaXJzdCBsYXN0dXNlciIsImVtYWlsIjoicmFqaWJfOTk5QHlhaG9vLmNvbSIsIm1lbWJlcl90eXBlIjoyLCJjb21wYW55X2lkIjo0MDcsImRlc2lnbmF0aW9uIjpudWxsLCJkZXBhcnRtZW50IjpudWxsfQ.G3KXZpcWnlCh3MrytM6ShQ2CSXdQ3QmyvUMnBtBZTKE\",",
+									"            \"message\": \"Successfully logged in.\",",
+									"            \"status\": \"success\"",
+									"        }",
+									"    ],",
+									"    \"required\": [",
+									"        \"auth_token\",",
+									"        \"message\",",
+									"        \"status\"",
+									"    ],",
+									"    \"properties\": {",
+									"        \"auth_token\": {",
+									"            \"$id\": \"#/properties/auth_token\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The auth_token schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDM5MDI0MjMsImlhdCI6MTYwMzg5ODgyMywic3ViIjo1NDUsInVzZXJfdHlwZSI6IkRhc2hib2FyZCIsIm5hbWUiOiJmaXJzdCBsYXN0dXNlciIsImVtYWlsIjoicmFqaWJfOTk5QHlhaG9vLmNvbSIsIm1lbWJlcl90eXBlIjoyLCJjb21wYW55X2lkIjo0MDcsImRlc2lnbmF0aW9uIjpudWxsLCJkZXBhcnRtZW50IjpudWxsfQ.G3KXZpcWnlCh3MrytM6ShQ2CSXdQ3QmyvUMnBtBZTKE\"",
+									"            ]",
+									"        },",
+									"        \"message\": {",
+									"            \"$id\": \"#/properties/message\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The message schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"Successfully logged in.\"",
+									"            ]",
+									"        },",
+									"        \"status\": {",
+									"            \"$id\": \"#/properties/status\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The status schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"success\"",
+									"            ]",
+									"        }",
+									"    },",
+									"    \"additionalProperties\": true",
+									"}",
+									"",
+									"pm.test('Schema is valid', function () {",
+									"   var result=tv4.validateResult(pm.response.json(),schema);",
+									"});",
+									" ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{auth_token_company_admin}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"title\":\"Assigned task title Car Service\",\n\"is_paid\": true,\n\"assigned_time\": \"timestamp\",\n\"assigned_location_lattitude\": \"24.43\",\n\"assigned_location_longitude\": \"93.42\",\n\"assigned_address\": \"Dhanmondi 32\",\n\"admin_id\": 752,\n\"user_id\": 420\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_task_service}}/api/v1/field-force/task/assign-task",
+							"host": [
+								"{{url_task_service}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"field-force",
+								"task",
+								"assign-task"
+							]
+						},
+						"description": "Body:\n{\n\"title\":\"Assigned task title Car Service\",\n\"is_paid\": true,\n\"assigned_time\": \"timestamp\",\n\"assigned_location_lattitude\": \"24.43\",\n\"assigned_location_longitude\": \"93.42\",\n\"assigned_address\": \"Dhanmondi 32\",\n\"admin_id\": 752,\n\"user_id\": 420\n}\nExpected Result:\n{\n    \"message\": \"Task assign successful\",\n    \"status\": \"success\"\n}\nActual Result:\n{\n    \"message\": \"Task assign successful\",\n    \"status\": \"success\"\n}\nStatus Code: 201 CREATED\n\nTest Result: PASS\n"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "TFS_21_Company admin should be able to view task lists",
+			"item": [
+				{
+					"name": "TFS_62_A_1.0_Dashboard_User(Company admin)_Login_in_admin_panel Copy 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "019e4674-7c45-4707-92ab-ad7b734eb261",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Response time is less than 600ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(600);",
+									"});",
+									"",
+									"//create variable for json Data",
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"auth_token_company_admin\",jsonData.auth_token);",
+									"//Validate Schema for this URL",
+									"",
+									"var schema = {",
+									"    \"$schema\": \"http://json-schema.org/draft-07/schema\",",
+									"    \"$id\": \"http://example.com/example.json\",",
+									"    \"type\": \"object\",",
+									"    \"title\": \"The root schema\",",
+									"    \"description\": \"The root schema comprises the entire JSON document.\",",
+									"    \"default\": {},",
+									"    \"examples\": [",
+									"        {",
+									"            \"auth_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDM5MDI0MjMsImlhdCI6MTYwMzg5ODgyMywic3ViIjo1NDUsInVzZXJfdHlwZSI6IkRhc2hib2FyZCIsIm5hbWUiOiJmaXJzdCBsYXN0dXNlciIsImVtYWlsIjoicmFqaWJfOTk5QHlhaG9vLmNvbSIsIm1lbWJlcl90eXBlIjoyLCJjb21wYW55X2lkIjo0MDcsImRlc2lnbmF0aW9uIjpudWxsLCJkZXBhcnRtZW50IjpudWxsfQ.G3KXZpcWnlCh3MrytM6ShQ2CSXdQ3QmyvUMnBtBZTKE\",",
+									"            \"message\": \"Successfully logged in.\",",
+									"            \"status\": \"success\"",
+									"        }",
+									"    ],",
+									"    \"required\": [",
+									"        \"auth_token\",",
+									"        \"message\",",
+									"        \"status\"",
+									"    ],",
+									"    \"properties\": {",
+									"        \"auth_token\": {",
+									"            \"$id\": \"#/properties/auth_token\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The auth_token schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDM5MDI0MjMsImlhdCI6MTYwMzg5ODgyMywic3ViIjo1NDUsInVzZXJfdHlwZSI6IkRhc2hib2FyZCIsIm5hbWUiOiJmaXJzdCBsYXN0dXNlciIsImVtYWlsIjoicmFqaWJfOTk5QHlhaG9vLmNvbSIsIm1lbWJlcl90eXBlIjoyLCJjb21wYW55X2lkIjo0MDcsImRlc2lnbmF0aW9uIjpudWxsLCJkZXBhcnRtZW50IjpudWxsfQ.G3KXZpcWnlCh3MrytM6ShQ2CSXdQ3QmyvUMnBtBZTKE\"",
+									"            ]",
+									"        },",
+									"        \"message\": {",
+									"            \"$id\": \"#/properties/message\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The message schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"Successfully logged in.\"",
+									"            ]",
+									"        },",
+									"        \"status\": {",
+									"            \"$id\": \"#/properties/status\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The status schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"success\"",
+									"            ]",
+									"        }",
+									"    },",
+									"    \"additionalProperties\": true",
+									"}",
+									"",
+									"pm.test('Schema is valid', function () {",
+									"   var result=tv4.validateResult(pm.response.json(),schema);",
+									"});",
+									" ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"rajib@gmail.com\",\n    \"password\": \"Rajib1234\"\n\n}\n",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{url_auth}}/api/v1/field-force/auth/dashboard-user-login",
+							"host": [
+								"{{url_auth}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"field-force",
+								"auth",
+								"dashboard-user-login"
+							]
+						},
+						"description": "BRD:\nDashboard User (Techserve4u/Company admin) login in\nadmin panel\n\nObjective:\nAs a company admin, I want to login to the\nadmin panel so that I can avail of services available\naccording to my member type\n\nSE: Shiblu Ahmad\nPO: Pranto Majumder\nQA: Samsur Rahman Rajib\nReviewer: Pranto Majumder.\n\nAcceptance Criteria:\nI will get my login credentials from my super admin.\nIf I want to login as a techserve4u admin then I have to\nregister on techserve4u panel or if I want to login as a\ncompany admin then I have to register on the\ncompany panel.\n\nDependency: \nRegister Dashboard User should be able to log in to the\nadmin panel.\n\nMethod: Post\nBody:\n{\n    \"email\": \"rajib@gmail.com\",\n    \"password\": \"Rajib1234\"\n\n}\nExpected Result:\n{\n    \"auth_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDM5ODQwOTMsImlhdCI6MTYwMzk4MDQ5Mywic3ViIjo1NDUsInVzZXJfdHlwZSI6IkRhc2hib2FyZCIsIm5hbWUiOiJmaXJzdCBsYXN0dXNlciIsImVtYWlsIjoicmFqaWJfOTk5QHlhaG9vLmNvbSIsIm1lbWJlcl90eXBlIjoyLCJjb21wYW55X2lkIjo0MDcsImRlc2lnbmF0aW9uIjpudWxsLCJkZXBhcnRtZW50IjpudWxsfQ.OAIbMnWjnq0HZCqXW_gIWPY8tu0S_H1Irh7u_aTXbSU\",\n    \"message\": \"Successfully logged in.\",\n    \"status\": \"success\"\n}\nActual Result: \n{\n    \"auth_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDM5ODQwOTMsImlhdCI6MTYwMzk4MDQ5Mywic3ViIjo1NDUsInVzZXJfdHlwZSI6IkRhc2hib2FyZCIsIm5hbWUiOiJmaXJzdCBsYXN0dXNlciIsImVtYWlsIjoicmFqaWJfOTk5QHlhaG9vLmNvbSIsIm1lbWJlcl90eXBlIjoyLCJjb21wYW55X2lkIjo0MDcsImRlc2lnbmF0aW9uIjpudWxsLCJkZXBhcnRtZW50IjpudWxsfQ.OAIbMnWjnq0HZCqXW_gIWPY8tu0S_H1Irh7u_aTXbSU\",\n    \"message\": \"Successfully logged in.\",\n    \"status\": \"success\"\n}\n\nStatus Code: 200 OK\n\nTest Result: Pass"
+					},
+					"response": []
+				},
+				{
+					"name": "TFS_21_Company admin should be able to view task lists",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3bfe9eb0-3ae7-48c2-aea9-bcfd8e2b9cb3",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Response time is less than 600ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(600);",
+									"});",
+									"",
+									"//create variable for json Data",
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"//Validate Schema for this URL",
+									"",
+									"var schema = {",
+									"    \"$schema\": \"http://json-schema.org/draft-07/schema\",",
+									"    \"$id\": \"http://example.com/example.json\",",
+									"    \"type\": \"object\",",
+									"    \"title\": \"The root schema\",",
+									"    \"description\": \"The root schema comprises the entire JSON document.\",",
+									"    \"default\": {},",
+									"    \"examples\": [",
+									"        {",
+									"            \"auth_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDM5MDI0MjMsImlhdCI6MTYwMzg5ODgyMywic3ViIjo1NDUsInVzZXJfdHlwZSI6IkRhc2hib2FyZCIsIm5hbWUiOiJmaXJzdCBsYXN0dXNlciIsImVtYWlsIjoicmFqaWJfOTk5QHlhaG9vLmNvbSIsIm1lbWJlcl90eXBlIjoyLCJjb21wYW55X2lkIjo0MDcsImRlc2lnbmF0aW9uIjpudWxsLCJkZXBhcnRtZW50IjpudWxsfQ.G3KXZpcWnlCh3MrytM6ShQ2CSXdQ3QmyvUMnBtBZTKE\",",
+									"            \"message\": \"Successfully logged in.\",",
+									"            \"status\": \"success\"",
+									"        }",
+									"    ],",
+									"    \"required\": [",
+									"        \"auth_token\",",
+									"        \"message\",",
+									"        \"status\"",
+									"    ],",
+									"    \"properties\": {",
+									"        \"auth_token\": {",
+									"            \"$id\": \"#/properties/auth_token\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The auth_token schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDM5MDI0MjMsImlhdCI6MTYwMzg5ODgyMywic3ViIjo1NDUsInVzZXJfdHlwZSI6IkRhc2hib2FyZCIsIm5hbWUiOiJmaXJzdCBsYXN0dXNlciIsImVtYWlsIjoicmFqaWJfOTk5QHlhaG9vLmNvbSIsIm1lbWJlcl90eXBlIjoyLCJjb21wYW55X2lkIjo0MDcsImRlc2lnbmF0aW9uIjpudWxsLCJkZXBhcnRtZW50IjpudWxsfQ.G3KXZpcWnlCh3MrytM6ShQ2CSXdQ3QmyvUMnBtBZTKE\"",
+									"            ]",
+									"        },",
+									"        \"message\": {",
+									"            \"$id\": \"#/properties/message\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The message schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"Successfully logged in.\"",
+									"            ]",
+									"        },",
+									"        \"status\": {",
+									"            \"$id\": \"#/properties/status\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The status schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"success\"",
+									"            ]",
+									"        }",
+									"    },",
+									"    \"additionalProperties\": true",
+									"}",
+									"",
+									"pm.test('Schema is valid', function () {",
+									"   var result=tv4.validateResult(pm.response.json(),schema);",
+									"});",
+									" ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{auth_token_company_admin}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{url_task_service}}/api/v1/field-force/task/admin-get-tasks/752",
+							"host": [
+								"{{url_task_service}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"field-force",
+								"task",
+								"admin-get-tasks",
+								"752"
+							]
+						},
+						"description": "Body:\n\nExpected Result:\n{\n    \"message\": [\n        {\n            \"album_id\": 211,\n            \"assigned_address\": \"Dhanmondi 32\",\n            \"assigned_location_lattitude\": \"24.43\",\n            \"assigned_location_longitude\": \"93.42\",\n            \"assigned_time\": \"timestamp\",\n            \"assigned_to\": \"shah sultan\",\n            \"assigned_to_phone\": \"5857086014\",\n            \"bill_amount\": null,\n            \"billing_address\": null,\n            \"is_paid\": true,\n            \"notes\": null,\n            \"payment_status\": false,\n            \"task_complete_location_lattitude\": null,\n            \"task_complete_location_longitude\": null,\n            \"task_complete_status\": null,\n            \"task_complete_time\": null,\n            \"task_id\": 211,\n            \"title\": \"Assigned task title Grocery\",\n            \"user_id\": 420\n        },\n        {\n            \"album_id\": 212,\n            \"assigned_address\": \"Dhanmondi 32\",\n            \"assigned_location_lattitude\": \"24.43\",\n            \"assigned_location_longitude\": \"93.42\",\n            \"assigned_time\": \"timestamp\",\n            \"assigned_to\": \"shah sultan\",\n            \"assigned_to_phone\": \"5857086014\",\n            \"bill_amount\": null,\n            \"billing_address\": null,\n            \"is_paid\": true,\n            \"notes\": null,\n            \"payment_status\": false,\n            \"task_complete_location_lattitude\": null,\n            \"task_complete_location_longitude\": null,\n            \"task_complete_status\": null,\n            \"task_complete_time\": null,\n            \"task_id\": 212,\n            \"title\": \"Assigned task title Flowers\",\n            \"user_id\": 420\n        },\n        {\n            \"album_id\": 213,\n            \"assigned_address\": \"Dhanmondi 32\",\n            \"assigned_location_lattitude\": \"24.43\",\n            \"assigned_location_longitude\": \"93.42\",\n            \"assigned_time\": \"timestamp\",\n            \"assigned_to\": \"shah sultan\",\n            \"assigned_to_phone\": \"5857086014\",\n            \"bill_amount\": null,\n            \"billing_address\": null,\n            \"is_paid\": true,\n            \"notes\": null,\n            \"payment_status\": false,\n            \"task_complete_location_lattitude\": null,\n            \"task_complete_location_longitude\": null,\n            \"task_complete_status\": null,\n            \"task_complete_time\": null,\n            \"task_id\": 213,\n            \"title\": \"Assigned task title Car Service\",\n            \"user_id\": 420\n        },\n        {\n            \"album_id\": 209,\n            \"assigned_address\": \"Dhanmondi 32\",\n            \"assigned_location_lattitude\": \"24.43\",\n            \"assigned_location_longitude\": \"93.42\",\n            \"assigned_time\": \"timestamp\",\n            \"assigned_to\": \"shah sultan\",\n            \"assigned_to_phone\": \"5857086014\",\n            \"bill_amount\": null,\n            \"billing_address\": null,\n            \"is_paid\": true,\n            \"notes\": null,\n            \"payment_status\": false,\n            \"task_complete_location_lattitude\": null,\n            \"task_complete_location_longitude\": null,\n            \"task_complete_status\": null,\n            \"task_complete_time\": null,\n            \"task_id\": 209,\n            \"title\": \"Assigned task title Pizza\",\n            \"user_id\": 420\n        },\n        {\n            \"album_id\": 210,\n            \"assigned_address\": \"Dhanmondi 32\",\n            \"assigned_location_lattitude\": \"24.43\",\n            \"assigned_location_longitude\": \"93.42\",\n            \"assigned_time\": \"timestamp\",\n            \"assigned_to\": \"shah sultan\",\n            \"assigned_to_phone\": \"5857086014\",\n            \"bill_amount\": null,\n            \"billing_address\": null,\n            \"is_paid\": true,\n            \"notes\": null,\n            \"payment_status\": false,\n            \"task_complete_location_lattitude\": null,\n            \"task_complete_location_longitude\": null,\n            \"task_complete_status\": null,\n            \"task_complete_time\": null,\n            \"task_id\": 210,\n            \"title\": \"Assigned task title Pizza\",\n            \"user_id\": 420\n        }\n    ],\n    \"status\": \"success\"\n}\nActual Result:\n{\n    \"message\": [\n        {\n            \"album_id\": 211,\n            \"assigned_address\": \"Dhanmondi 32\",\n            \"assigned_location_lattitude\": \"24.43\",\n            \"assigned_location_longitude\": \"93.42\",\n            \"assigned_time\": \"timestamp\",\n            \"assigned_to\": \"shah sultan\",\n            \"assigned_to_phone\": \"5857086014\",\n            \"bill_amount\": null,\n            \"billing_address\": null,\n            \"is_paid\": true,\n            \"notes\": null,\n            \"payment_status\": false,\n            \"task_complete_location_lattitude\": null,\n            \"task_complete_location_longitude\": null,\n            \"task_complete_status\": null,\n            \"task_complete_time\": null,\n            \"task_id\": 211,\n            \"title\": \"Assigned task title Grocery\",\n            \"user_id\": 420\n        },\n        {\n            \"album_id\": 212,\n            \"assigned_address\": \"Dhanmondi 32\",\n            \"assigned_location_lattitude\": \"24.43\",\n            \"assigned_location_longitude\": \"93.42\",\n            \"assigned_time\": \"timestamp\",\n            \"assigned_to\": \"shah sultan\",\n            \"assigned_to_phone\": \"5857086014\",\n            \"bill_amount\": null,\n            \"billing_address\": null,\n            \"is_paid\": true,\n            \"notes\": null,\n            \"payment_status\": false,\n            \"task_complete_location_lattitude\": null,\n            \"task_complete_location_longitude\": null,\n            \"task_complete_status\": null,\n            \"task_complete_time\": null,\n            \"task_id\": 212,\n            \"title\": \"Assigned task title Flowers\",\n            \"user_id\": 420\n        },\n        {\n            \"album_id\": 213,\n            \"assigned_address\": \"Dhanmondi 32\",\n            \"assigned_location_lattitude\": \"24.43\",\n            \"assigned_location_longitude\": \"93.42\",\n            \"assigned_time\": \"timestamp\",\n            \"assigned_to\": \"shah sultan\",\n            \"assigned_to_phone\": \"5857086014\",\n            \"bill_amount\": null,\n            \"billing_address\": null,\n            \"is_paid\": true,\n            \"notes\": null,\n            \"payment_status\": false,\n            \"task_complete_location_lattitude\": null,\n            \"task_complete_location_longitude\": null,\n            \"task_complete_status\": null,\n            \"task_complete_time\": null,\n            \"task_id\": 213,\n            \"title\": \"Assigned task title Car Service\",\n            \"user_id\": 420\n        },\n        {\n            \"album_id\": 209,\n            \"assigned_address\": \"Dhanmondi 32\",\n            \"assigned_location_lattitude\": \"24.43\",\n            \"assigned_location_longitude\": \"93.42\",\n            \"assigned_time\": \"timestamp\",\n            \"assigned_to\": \"shah sultan\",\n            \"assigned_to_phone\": \"5857086014\",\n            \"bill_amount\": null,\n            \"billing_address\": null,\n            \"is_paid\": true,\n            \"notes\": null,\n            \"payment_status\": false,\n            \"task_complete_location_lattitude\": null,\n            \"task_complete_location_longitude\": null,\n            \"task_complete_status\": null,\n            \"task_complete_time\": null,\n            \"task_id\": 209,\n            \"title\": \"Assigned task title Pizza\",\n            \"user_id\": 420\n        },\n        {\n            \"album_id\": 210,\n            \"assigned_address\": \"Dhanmondi 32\",\n            \"assigned_location_lattitude\": \"24.43\",\n            \"assigned_location_longitude\": \"93.42\",\n            \"assigned_time\": \"timestamp\",\n            \"assigned_to\": \"shah sultan\",\n            \"assigned_to_phone\": \"5857086014\",\n            \"bill_amount\": null,\n            \"billing_address\": null,\n            \"is_paid\": true,\n            \"notes\": null,\n            \"payment_status\": false,\n            \"task_complete_location_lattitude\": null,\n            \"task_complete_location_longitude\": null,\n            \"task_complete_status\": null,\n            \"task_complete_time\": null,\n            \"task_id\": 210,\n            \"title\": \"Assigned task title Pizza\",\n            \"user_id\": 420\n        }\n    ],\n    \"status\": \"success\"\n}\nStatus Code: 200 OK\n\nTest Result: PASS\n"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "TFS_22_App user should be able to view the task list",
+			"item": [
+				{
+					"name": "TFS_58_1.0_App_user_should_be_able_to_login_the_FFM_mobile_app Copy 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5d01dac1-4a87-432f-a6ae-2aa594810674",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Response time is less than 600ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(600);",
+									"});",
+									"//create variable for json Data",
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"auth_token_app_user\",jsonData.auth_token);",
+									"",
+									"//Validate Schema for this URL",
+									"",
+									"var schema = {",
+									"    \"$schema\": \"http://json-schema.org/draft-07/schema\",",
+									"    \"$id\": \"http://example.com/example.json\",",
+									"    \"type\": \"object\",",
+									"    \"title\": \"The root schema\",",
+									"    \"description\": \"The root schema comprises the entire JSON document.\",",
+									"    \"default\": {},",
+									"    \"examples\": [",
+									"        {",
+									"            \"data\": {",
+									"                \"company_address\": \"Deshi Ln, Jackson Heights\",",
+									"                \"company_id\": 414,",
+									"                \"company_name\": \"Kabab Park\",",
+									"                \"tin\": \"24411391\"",
+									"            },",
+									"            \"message\": \"Successfully registered company 'Kabab Park' .\",",
+									"            \"status\": \"success\"",
+									"        }",
+									"    ],",
+									"    \"required\": [",
+									"        \"data\",",
+									"        \"message\",",
+									"        \"status\"",
+									"    ],",
+									"    \"properties\": {",
+									"        \"data\": {",
+									"            \"$id\": \"#/properties/data\",",
+									"            \"type\": \"object\",",
+									"            \"title\": \"The data schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": {},",
+									"            \"examples\": [",
+									"                {",
+									"                    \"company_address\": \"Deshi Ln, Jackson Heights\",",
+									"                    \"company_id\": 414,",
+									"                    \"company_name\": \"Kabab Park\",",
+									"                    \"tin\": \"24411391\"",
+									"                }",
+									"            ],",
+									"            \"required\": [",
+									"                \"company_address\",",
+									"                \"company_id\",",
+									"                \"company_name\",",
+									"                \"tin\"",
+									"            ],",
+									"            \"properties\": {",
+									"                \"company_address\": {",
+									"                    \"$id\": \"#/properties/data/properties/company_address\",",
+									"                    \"type\": \"string\",",
+									"                    \"title\": \"The company_address schema\",",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",",
+									"                    \"default\": \"\",",
+									"                    \"examples\": [",
+									"                        \"Deshi Ln, Jackson Heights\"",
+									"                    ]",
+									"                },",
+									"                \"company_id\": {",
+									"                    \"$id\": \"#/properties/data/properties/company_id\",",
+									"                    \"type\": \"integer\",",
+									"                    \"title\": \"The company_id schema\",",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",",
+									"                    \"default\": 0,",
+									"                    \"examples\": [",
+									"                        414",
+									"                    ]",
+									"                },",
+									"                \"company_name\": {",
+									"                    \"$id\": \"#/properties/data/properties/company_name\",",
+									"                    \"type\": \"string\",",
+									"                    \"title\": \"The company_name schema\",",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",",
+									"                    \"default\": \"\",",
+									"                    \"examples\": [",
+									"                        \"Kabab Park\"",
+									"                    ]",
+									"                },",
+									"                \"tin\": {",
+									"                    \"$id\": \"#/properties/data/properties/tin\",",
+									"                    \"type\": \"string\",",
+									"                    \"title\": \"The tin schema\",",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",",
+									"                    \"default\": \"\",",
+									"                    \"examples\": [",
+									"                        \"24411391\"",
+									"                    ]",
+									"                }",
+									"            },",
+									"            \"additionalProperties\": true",
+									"        },",
+									"        \"message\": {",
+									"            \"$id\": \"#/properties/message\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The message schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"Successfully registered company 'Kabab Park' .\"",
+									"            ]",
+									"        },",
+									"        \"status\": {",
+									"            \"$id\": \"#/properties/status\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The status schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"success\"",
+									"            ]",
+									"        }",
+									"    },",
+									"    \"additionalProperties\": true",
+									"}",
+									"",
+									"pm.test('Schema is valid', function () {",
+									"   var result=tv4.validateResult(pm.response.json(),schema);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"phone_number\": \"5857086014\",\n    \"firebase_id\": \"firebase_ididid\",\n    \"secret_text\": \"the_super_secret_text\",\n    \"phone_number_int\": \"5857086014\",\n    \"iso_code\": \"US\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_auth}}/api/v1/field-force/auth/user-login",
+							"host": [
+								"{{url_auth}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"field-force",
+								"auth",
+								"user-login"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Objective:\nAs an App user, I want to login to the FFM\napp so that I can avail services available to me\n\nAcceptance Criteria:\nI should be able to login on the FFM mobile app through\nmy registered contact number.\nI will get an OTP code to verify my number.\n\nDependency: \nUsers should be registered from the company admin\npanel.  \n\nBody:\n{\n    \"phone_number\": \"5857086014\",\n    \"firebase_id\": \"firebase_ididid\",\n    \"secret_text\": \"the_super_secret_text\",\n    \"phone_number_int\": \"5857086014\",\n    \"iso_code\": \"US\"\n}\nEpected Result:\n{\n    \"auth_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDU1NzQ5NjgsImlhdCI6MTYwNDk3MDE2OCwic3ViIjo0MjAsIm1vZHVsZXMiOltdLCJ1c2VyX3R5cGUiOiJHZW5lcmFsIiwibmFtZSI6InNoYWggc3VsdGFuIiwicGhvbmVfbnVtYmVyIjoiNTg1NzA4NjAxNCIsIm1lbWJlcl90eXBlIjozfQ.KcUnHhPR2nnyllQI2WLWJr8YrUwsr5mjDeYDP-o7SUk\",\n    \"message\": \"Successfully logged in.\",\n    \"status\": \"success\"\n}\nActual Result:\n{\n    \"auth_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDU1NzQ5NjgsImlhdCI6MTYwNDk3MDE2OCwic3ViIjo0MjAsIm1vZHVsZXMiOltdLCJ1c2VyX3R5cGUiOiJHZW5lcmFsIiwibmFtZSI6InNoYWggc3VsdGFuIiwicGhvbmVfbnVtYmVyIjoiNTg1NzA4NjAxNCIsIm1lbWJlcl90eXBlIjozfQ.KcUnHhPR2nnyllQI2WLWJr8YrUwsr5mjDeYDP-o7SUk\",\n    \"message\": \"Successfully logged in.\",\n    \"status\": \"success\"\n}\nStatus Code: 200 OK\n\nTest Result: Pass\n"
+					},
+					"response": []
+				},
+				{
+					"name": "TFS_22_App user should be able to view the task list",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a5ea16f0-607d-47f5-ac61-0cd383a54e0c",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Response time is less than 600ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(600);",
+									"});",
+									"",
+									"//create variable for json Data",
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"//Validate Schema for this URL",
+									"",
+									"var schema = {",
+									"    \"$schema\": \"http://json-schema.org/draft-07/schema\",",
+									"    \"$id\": \"http://example.com/example.json\",",
+									"    \"type\": \"object\",",
+									"    \"title\": \"The root schema\",",
+									"    \"description\": \"The root schema comprises the entire JSON document.\",",
+									"    \"default\": {},",
+									"    \"examples\": [",
+									"        {",
+									"            \"auth_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDM5MDI0MjMsImlhdCI6MTYwMzg5ODgyMywic3ViIjo1NDUsInVzZXJfdHlwZSI6IkRhc2hib2FyZCIsIm5hbWUiOiJmaXJzdCBsYXN0dXNlciIsImVtYWlsIjoicmFqaWJfOTk5QHlhaG9vLmNvbSIsIm1lbWJlcl90eXBlIjoyLCJjb21wYW55X2lkIjo0MDcsImRlc2lnbmF0aW9uIjpudWxsLCJkZXBhcnRtZW50IjpudWxsfQ.G3KXZpcWnlCh3MrytM6ShQ2CSXdQ3QmyvUMnBtBZTKE\",",
+									"            \"message\": \"Successfully logged in.\",",
+									"            \"status\": \"success\"",
+									"        }",
+									"    ],",
+									"    \"required\": [",
+									"        \"auth_token\",",
+									"        \"message\",",
+									"        \"status\"",
+									"    ],",
+									"    \"properties\": {",
+									"        \"auth_token\": {",
+									"            \"$id\": \"#/properties/auth_token\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The auth_token schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDM5MDI0MjMsImlhdCI6MTYwMzg5ODgyMywic3ViIjo1NDUsInVzZXJfdHlwZSI6IkRhc2hib2FyZCIsIm5hbWUiOiJmaXJzdCBsYXN0dXNlciIsImVtYWlsIjoicmFqaWJfOTk5QHlhaG9vLmNvbSIsIm1lbWJlcl90eXBlIjoyLCJjb21wYW55X2lkIjo0MDcsImRlc2lnbmF0aW9uIjpudWxsLCJkZXBhcnRtZW50IjpudWxsfQ.G3KXZpcWnlCh3MrytM6ShQ2CSXdQ3QmyvUMnBtBZTKE\"",
+									"            ]",
+									"        },",
+									"        \"message\": {",
+									"            \"$id\": \"#/properties/message\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The message schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"Successfully logged in.\"",
+									"            ]",
+									"        },",
+									"        \"status\": {",
+									"            \"$id\": \"#/properties/status\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The status schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"success\"",
+									"            ]",
+									"        }",
+									"    },",
+									"    \"additionalProperties\": true",
+									"}",
+									"",
+									"pm.test('Schema is valid', function () {",
+									"   var result=tv4.validateResult(pm.response.json(),schema);",
+									"});",
+									" ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{auth_token_app_user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url_task_service}}/api/v1/field-force/task/user-get-tasks/{{user_id_app_user}}",
+							"host": [
+								"{{url_task_service}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"field-force",
+								"task",
+								"user-get-tasks",
+								"{{user_id_app_user}}"
+							]
+						},
+						"description": "Objective: As an app user, I want to see the assigned task list so that I can complete the task and can see also incomplete/complete tasks.\n\nAcceptance Criteria:  \nI can see the assigned task with details.\nAfter completing the task I can give updates through the FFM app.\nThe company admin should be able to see the update of my action items. \n\nDependencies: \nRegistered users should be login to the FFM app.\nCompany admin should create users before assigning them.\n\n\nSteps: \nOpen postman\nOpen Folder (Field Force Management)\nOpen a new tab \nAdd API URL\nSelect method: GET\nSelect the Authorization tab\nSelect type: Bearer Token\nPaste the token: (\"user login\" API)\nHit the \"Send\" button to execute the API\n\nAPI Specification: \nAPI URL:  /api/v1/field-force/task/user-get-tasks/{user_id}\nMethod: GET\n\n(Note: For user_id as a registered user you need to login through \"user login\" API then authenticate the user through \"authenticate user\" API)\n\nExpected Result:\n{\n    \"message\": [\n        {\n            \"admin_id\": 752,\n            \"album_id\": 211,\n            \"assigned_address\": \"Dhanmondi 32\",\n            \"assigned_location_lattitude\": \"24.43\",\n            \"assigned_location_longitude\": \"93.42\",\n            \"assigned_time\": \"timestamp\",\n            \"bill_amount\": null,\n            \"billing_address\": null,\n            \"is_paid\": true,\n            \"notes\": null,\n            \"payment_status\": false,\n            \"task_complete_location_lattitude\": null,\n            \"task_complete_location_longitude\": null,\n            \"task_complete_status\": null,\n            \"task_complete_time\": null,\n            \"task_id\": 211,\n            \"title\": \"Assigned task title Grocery\"\n        },\n        {\n            \"admin_id\": 752,\n            \"album_id\": 212,\n            \"assigned_address\": \"Dhanmondi 32\",\n            \"assigned_location_lattitude\": \"24.43\",\n            \"assigned_location_longitude\": \"93.42\",\n            \"assigned_time\": \"timestamp\",\n            \"bill_amount\": null,\n            \"billing_address\": null,\n            \"is_paid\": true,\n            \"notes\": null,\n            \"payment_status\": false,\n            \"task_complete_location_lattitude\": null,\n            \"task_complete_location_longitude\": null,\n            \"task_complete_status\": null,\n            \"task_complete_time\": null,\n            \"task_id\": 212,\n            \"title\": \"Assigned task title Flowers\"\n        },\n        {\n            \"admin_id\": 752,\n            \"album_id\": 213,\n            \"assigned_address\": \"Dhanmondi 32\",\n            \"assigned_location_lattitude\": \"24.43\",\n            \"assigned_location_longitude\": \"93.42\",\n            \"assigned_time\": \"timestamp\",\n            \"bill_amount\": null,\n            \"billing_address\": null,\n            \"is_paid\": true,\n            \"notes\": null,\n            \"payment_status\": false,\n            \"task_complete_location_lattitude\": null,\n            \"task_complete_location_longitude\": null,\n            \"task_complete_status\": null,\n            \"task_complete_time\": null,\n            \"task_id\": 213,\n            \"title\": \"Assigned task title Car Service\"\n        },\n        {\n            \"admin_id\": 752,\n            \"album_id\": 209,\n            \"assigned_address\": \"Dhanmondi 32\",\n            \"assigned_location_lattitude\": \"24.43\",\n            \"assigned_location_longitude\": \"93.42\",\n            \"assigned_time\": \"timestamp\",\n            \"bill_amount\": null,\n            \"billing_address\": null,\n            \"is_paid\": true,\n            \"notes\": null,\n            \"payment_status\": false,\n            \"task_complete_location_lattitude\": null,\n            \"task_complete_location_longitude\": null,\n            \"task_complete_status\": null,\n            \"task_complete_time\": null,\n            \"task_id\": 209,\n            \"title\": \"Assigned task title Pizza\"\n        },\n        {\n            \"admin_id\": 752,\n            \"album_id\": 210,\n            \"assigned_address\": \"Dhanmondi 32\",\n            \"assigned_location_lattitude\": \"24.43\",\n            \"assigned_location_longitude\": \"93.42\",\n            \"assigned_time\": \"timestamp\",\n            \"bill_amount\": null,\n            \"billing_address\": null,\n            \"is_paid\": true,\n            \"notes\": null,\n            \"payment_status\": false,\n            \"task_complete_location_lattitude\": null,\n            \"task_complete_location_longitude\": null,\n            \"task_complete_status\": null,\n            \"task_complete_time\": null,\n            \"task_id\": 210,\n            \"title\": \"Assigned task title Pizza\"\n        }\n    ],\n    \"status\": \"success\"\n}\nActual Result:\n{\n    \"message\": [\n        {\n            \"admin_id\": 752,\n            \"album_id\": 211,\n            \"assigned_address\": \"Dhanmondi 32\",\n            \"assigned_location_lattitude\": \"24.43\",\n            \"assigned_location_longitude\": \"93.42\",\n            \"assigned_time\": \"timestamp\",\n            \"bill_amount\": null,\n            \"billing_address\": null,\n            \"is_paid\": true,\n            \"notes\": null,\n            \"payment_status\": false,\n            \"task_complete_location_lattitude\": null,\n            \"task_complete_location_longitude\": null,\n            \"task_complete_status\": null,\n            \"task_complete_time\": null,\n            \"task_id\": 211,\n            \"title\": \"Assigned task title Grocery\"\n        },\n        {\n            \"admin_id\": 752,\n            \"album_id\": 212,\n            \"assigned_address\": \"Dhanmondi 32\",\n            \"assigned_location_lattitude\": \"24.43\",\n            \"assigned_location_longitude\": \"93.42\",\n            \"assigned_time\": \"timestamp\",\n            \"bill_amount\": null,\n            \"billing_address\": null,\n            \"is_paid\": true,\n            \"notes\": null,\n            \"payment_status\": false,\n            \"task_complete_location_lattitude\": null,\n            \"task_complete_location_longitude\": null,\n            \"task_complete_status\": null,\n            \"task_complete_time\": null,\n            \"task_id\": 212,\n            \"title\": \"Assigned task title Flowers\"\n        },\n        {\n            \"admin_id\": 752,\n            \"album_id\": 213,\n            \"assigned_address\": \"Dhanmondi 32\",\n            \"assigned_location_lattitude\": \"24.43\",\n            \"assigned_location_longitude\": \"93.42\",\n            \"assigned_time\": \"timestamp\",\n            \"bill_amount\": null,\n            \"billing_address\": null,\n            \"is_paid\": true,\n            \"notes\": null,\n            \"payment_status\": false,\n            \"task_complete_location_lattitude\": null,\n            \"task_complete_location_longitude\": null,\n            \"task_complete_status\": null,\n            \"task_complete_time\": null,\n            \"task_id\": 213,\n            \"title\": \"Assigned task title Car Service\"\n        },\n        {\n            \"admin_id\": 752,\n            \"album_id\": 209,\n            \"assigned_address\": \"Dhanmondi 32\",\n            \"assigned_location_lattitude\": \"24.43\",\n            \"assigned_location_longitude\": \"93.42\",\n            \"assigned_time\": \"timestamp\",\n            \"bill_amount\": null,\n            \"billing_address\": null,\n            \"is_paid\": true,\n            \"notes\": null,\n            \"payment_status\": false,\n            \"task_complete_location_lattitude\": null,\n            \"task_complete_location_longitude\": null,\n            \"task_complete_status\": null,\n            \"task_complete_time\": null,\n            \"task_id\": 209,\n            \"title\": \"Assigned task title Pizza\"\n        },\n        {\n            \"admin_id\": 752,\n            \"album_id\": 210,\n            \"assigned_address\": \"Dhanmondi 32\",\n            \"assigned_location_lattitude\": \"24.43\",\n            \"assigned_location_longitude\": \"93.42\",\n            \"assigned_time\": \"timestamp\",\n            \"bill_amount\": null,\n            \"billing_address\": null,\n            \"is_paid\": true,\n            \"notes\": null,\n            \"payment_status\": false,\n            \"task_complete_location_lattitude\": null,\n            \"task_complete_location_longitude\": null,\n            \"task_complete_status\": null,\n            \"task_complete_time\": null,\n            \"task_id\": 210,\n            \"title\": \"Assigned task title Pizza\"\n        }\n    ],\n    \"status\": \"success\"\n}\nStatus Code: 200 ok\n\nTest Result: PASS\n\n\n\n"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "TFS_24_App user should be able to give feedback for specific task",
+			"item": [
+				{
+					"name": "TFS_58_1.0_App_user_should_be_able_to_login_the_FFM_mobile_app Copy 3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c24c51a7-6840-4cb8-9aa7-a28a0166f954",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Response time is less than 600ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(600);",
+									"});",
+									"//create variable for json Data",
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"auth_token_app_user\",jsonData.auth_token);",
+									"",
+									"//Validate Schema for this URL",
+									"",
+									"var schema = {",
+									"    \"$schema\": \"http://json-schema.org/draft-07/schema\",",
+									"    \"$id\": \"http://example.com/example.json\",",
+									"    \"type\": \"object\",",
+									"    \"title\": \"The root schema\",",
+									"    \"description\": \"The root schema comprises the entire JSON document.\",",
+									"    \"default\": {},",
+									"    \"examples\": [",
+									"        {",
+									"            \"data\": {",
+									"                \"company_address\": \"Deshi Ln, Jackson Heights\",",
+									"                \"company_id\": 414,",
+									"                \"company_name\": \"Kabab Park\",",
+									"                \"tin\": \"24411391\"",
+									"            },",
+									"            \"message\": \"Successfully registered company 'Kabab Park' .\",",
+									"            \"status\": \"success\"",
+									"        }",
+									"    ],",
+									"    \"required\": [",
+									"        \"data\",",
+									"        \"message\",",
+									"        \"status\"",
+									"    ],",
+									"    \"properties\": {",
+									"        \"data\": {",
+									"            \"$id\": \"#/properties/data\",",
+									"            \"type\": \"object\",",
+									"            \"title\": \"The data schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": {},",
+									"            \"examples\": [",
+									"                {",
+									"                    \"company_address\": \"Deshi Ln, Jackson Heights\",",
+									"                    \"company_id\": 414,",
+									"                    \"company_name\": \"Kabab Park\",",
+									"                    \"tin\": \"24411391\"",
+									"                }",
+									"            ],",
+									"            \"required\": [",
+									"                \"company_address\",",
+									"                \"company_id\",",
+									"                \"company_name\",",
+									"                \"tin\"",
+									"            ],",
+									"            \"properties\": {",
+									"                \"company_address\": {",
+									"                    \"$id\": \"#/properties/data/properties/company_address\",",
+									"                    \"type\": \"string\",",
+									"                    \"title\": \"The company_address schema\",",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",",
+									"                    \"default\": \"\",",
+									"                    \"examples\": [",
+									"                        \"Deshi Ln, Jackson Heights\"",
+									"                    ]",
+									"                },",
+									"                \"company_id\": {",
+									"                    \"$id\": \"#/properties/data/properties/company_id\",",
+									"                    \"type\": \"integer\",",
+									"                    \"title\": \"The company_id schema\",",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",",
+									"                    \"default\": 0,",
+									"                    \"examples\": [",
+									"                        414",
+									"                    ]",
+									"                },",
+									"                \"company_name\": {",
+									"                    \"$id\": \"#/properties/data/properties/company_name\",",
+									"                    \"type\": \"string\",",
+									"                    \"title\": \"The company_name schema\",",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",",
+									"                    \"default\": \"\",",
+									"                    \"examples\": [",
+									"                        \"Kabab Park\"",
+									"                    ]",
+									"                },",
+									"                \"tin\": {",
+									"                    \"$id\": \"#/properties/data/properties/tin\",",
+									"                    \"type\": \"string\",",
+									"                    \"title\": \"The tin schema\",",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",",
+									"                    \"default\": \"\",",
+									"                    \"examples\": [",
+									"                        \"24411391\"",
+									"                    ]",
+									"                }",
+									"            },",
+									"            \"additionalProperties\": true",
+									"        },",
+									"        \"message\": {",
+									"            \"$id\": \"#/properties/message\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The message schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"Successfully registered company 'Kabab Park' .\"",
+									"            ]",
+									"        },",
+									"        \"status\": {",
+									"            \"$id\": \"#/properties/status\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The status schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"success\"",
+									"            ]",
+									"        }",
+									"    },",
+									"    \"additionalProperties\": true",
+									"}",
+									"",
+									"pm.test('Schema is valid', function () {",
+									"   var result=tv4.validateResult(pm.response.json(),schema);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"phone_number\": \"5857086014\",\n    \"firebase_id\": \"firebase_ididid\",\n    \"secret_text\": \"the_super_secret_text\",\n    \"phone_number_int\": \"5857086014\",\n    \"iso_code\": \"US\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_auth}}/api/v1/field-force/auth/user-login",
+							"host": [
+								"{{url_auth}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"field-force",
+								"auth",
+								"user-login"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Objective:\nAs an App user, I want to login to the FFM\napp so that I can avail services available to me\n\nAcceptance Criteria:\nI should be able to login on the FFM mobile app through\nmy registered contact number.\nI will get an OTP code to verify my number.\n\nDependency: \nUsers should be registered from the company admin\npanel.  \n\nBody:\n{\n    \"phone_number\": \"5857086014\",\n    \"firebase_id\": \"firebase_ididid\",\n    \"secret_text\": \"the_super_secret_text\",\n    \"phone_number_int\": \"5857086014\",\n    \"iso_code\": \"US\"\n}\nEpected Result:\n{\n    \"auth_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDU1NzQ5NjgsImlhdCI6MTYwNDk3MDE2OCwic3ViIjo0MjAsIm1vZHVsZXMiOltdLCJ1c2VyX3R5cGUiOiJHZW5lcmFsIiwibmFtZSI6InNoYWggc3VsdGFuIiwicGhvbmVfbnVtYmVyIjoiNTg1NzA4NjAxNCIsIm1lbWJlcl90eXBlIjozfQ.KcUnHhPR2nnyllQI2WLWJr8YrUwsr5mjDeYDP-o7SUk\",\n    \"message\": \"Successfully logged in.\",\n    \"status\": \"success\"\n}\nActual Result:\n{\n    \"auth_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDU1NzQ5NjgsImlhdCI6MTYwNDk3MDE2OCwic3ViIjo0MjAsIm1vZHVsZXMiOltdLCJ1c2VyX3R5cGUiOiJHZW5lcmFsIiwibmFtZSI6InNoYWggc3VsdGFuIiwicGhvbmVfbnVtYmVyIjoiNTg1NzA4NjAxNCIsIm1lbWJlcl90eXBlIjozfQ.KcUnHhPR2nnyllQI2WLWJr8YrUwsr5mjDeYDP-o7SUk\",\n    \"message\": \"Successfully logged in.\",\n    \"status\": \"success\"\n}\nStatus Code: 200 OK\n\nTest Result: Pass\n"
+					},
+					"response": []
+				},
+				{
+					"name": "TFS_24_App user should be able to give feedback for specific task",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ef7b7484-806a-4907-88e4-6eb373f8c24b",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"pm.test(\"Response time is less than 600ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(600);",
+									"});",
+									"",
+									"//create variable for json Data",
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"//Validate Schema for this URL",
+									"",
+									"var schema = {",
+									"    \"$schema\": \"http://json-schema.org/draft-07/schema\",",
+									"    \"$id\": \"http://example.com/example.json\",",
+									"    \"type\": \"object\",",
+									"    \"title\": \"The root schema\",",
+									"    \"description\": \"The root schema comprises the entire JSON document.\",",
+									"    \"default\": {},",
+									"    \"examples\": [",
+									"        {",
+									"            \"auth_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDM5MDI0MjMsImlhdCI6MTYwMzg5ODgyMywic3ViIjo1NDUsInVzZXJfdHlwZSI6IkRhc2hib2FyZCIsIm5hbWUiOiJmaXJzdCBsYXN0dXNlciIsImVtYWlsIjoicmFqaWJfOTk5QHlhaG9vLmNvbSIsIm1lbWJlcl90eXBlIjoyLCJjb21wYW55X2lkIjo0MDcsImRlc2lnbmF0aW9uIjpudWxsLCJkZXBhcnRtZW50IjpudWxsfQ.G3KXZpcWnlCh3MrytM6ShQ2CSXdQ3QmyvUMnBtBZTKE\",",
+									"            \"message\": \"Successfully logged in.\",",
+									"            \"status\": \"success\"",
+									"        }",
+									"    ],",
+									"    \"required\": [",
+									"        \"auth_token\",",
+									"        \"message\",",
+									"        \"status\"",
+									"    ],",
+									"    \"properties\": {",
+									"        \"auth_token\": {",
+									"            \"$id\": \"#/properties/auth_token\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The auth_token schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDM5MDI0MjMsImlhdCI6MTYwMzg5ODgyMywic3ViIjo1NDUsInVzZXJfdHlwZSI6IkRhc2hib2FyZCIsIm5hbWUiOiJmaXJzdCBsYXN0dXNlciIsImVtYWlsIjoicmFqaWJfOTk5QHlhaG9vLmNvbSIsIm1lbWJlcl90eXBlIjoyLCJjb21wYW55X2lkIjo0MDcsImRlc2lnbmF0aW9uIjpudWxsLCJkZXBhcnRtZW50IjpudWxsfQ.G3KXZpcWnlCh3MrytM6ShQ2CSXdQ3QmyvUMnBtBZTKE\"",
+									"            ]",
+									"        },",
+									"        \"message\": {",
+									"            \"$id\": \"#/properties/message\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The message schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"Successfully logged in.\"",
+									"            ]",
+									"        },",
+									"        \"status\": {",
+									"            \"$id\": \"#/properties/status\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The status schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"success\"",
+									"            ]",
+									"        }",
+									"    },",
+									"    \"additionalProperties\": true",
+									"}",
+									"",
+									"pm.test('Schema is valid', function () {",
+									"   var result=tv4.validateResult(pm.response.json(),schema);",
+									"});",
+									" ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{auth_token_app_user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"notes\":\" This is our vip customer 211.\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_task_service}}/api/v1/field-force/task/update-note/{{user_id_app_user}}/211",
+							"host": [
+								"{{url_task_service}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"field-force",
+								"task",
+								"update-note",
+								"{{user_id_app_user}}",
+								"211"
+							]
+						},
+						"description": "Objective: As an app  user, I want to submit/give feedback against a particular task so that I can inform any issues or not to the company admin\n\nAcceptance Criteria: \nAfter completing the action item of delivery then I should be able to give feedback if I want. \nIf I don't have any feedback or I don't want to give any note or feedback, I can do that also because it's not mandatory.\nDependency: \nApp users should be able to log in FFM app through valid credentials.\n\nBody:\n{\n\"notes\":\" This is our vip customer 211.\"\n}\nExpected Result:\n{\n    \"message\": \"Task note update successful\",\n    \"status\": \"success\"\n}\nActual Result:\n{\n    \"message\": \"Task note update successful\",\n    \"status\": \"success\"\n}\nStatus Code: 201 CREATED\n\nTest Result: PASS\n\n"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "TFS_25_App user should be able to update payment status of  paid task",
+			"item": [
+				{
+					"name": "TFS_58_1.0_App_user_should_be_able_to_login_the_FFM_mobile_app Copy 4",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6838b92d-3acf-447c-a675-8419d008cb26",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Response time is less than 600ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(600);",
+									"});",
+									"//create variable for json Data",
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"auth_token_app_user\",jsonData.auth_token);",
+									"",
+									"//Validate Schema for this URL",
+									"",
+									"var schema = {",
+									"    \"$schema\": \"http://json-schema.org/draft-07/schema\",",
+									"    \"$id\": \"http://example.com/example.json\",",
+									"    \"type\": \"object\",",
+									"    \"title\": \"The root schema\",",
+									"    \"description\": \"The root schema comprises the entire JSON document.\",",
+									"    \"default\": {},",
+									"    \"examples\": [",
+									"        {",
+									"            \"data\": {",
+									"                \"company_address\": \"Deshi Ln, Jackson Heights\",",
+									"                \"company_id\": 414,",
+									"                \"company_name\": \"Kabab Park\",",
+									"                \"tin\": \"24411391\"",
+									"            },",
+									"            \"message\": \"Successfully registered company 'Kabab Park' .\",",
+									"            \"status\": \"success\"",
+									"        }",
+									"    ],",
+									"    \"required\": [",
+									"        \"data\",",
+									"        \"message\",",
+									"        \"status\"",
+									"    ],",
+									"    \"properties\": {",
+									"        \"data\": {",
+									"            \"$id\": \"#/properties/data\",",
+									"            \"type\": \"object\",",
+									"            \"title\": \"The data schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": {},",
+									"            \"examples\": [",
+									"                {",
+									"                    \"company_address\": \"Deshi Ln, Jackson Heights\",",
+									"                    \"company_id\": 414,",
+									"                    \"company_name\": \"Kabab Park\",",
+									"                    \"tin\": \"24411391\"",
+									"                }",
+									"            ],",
+									"            \"required\": [",
+									"                \"company_address\",",
+									"                \"company_id\",",
+									"                \"company_name\",",
+									"                \"tin\"",
+									"            ],",
+									"            \"properties\": {",
+									"                \"company_address\": {",
+									"                    \"$id\": \"#/properties/data/properties/company_address\",",
+									"                    \"type\": \"string\",",
+									"                    \"title\": \"The company_address schema\",",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",",
+									"                    \"default\": \"\",",
+									"                    \"examples\": [",
+									"                        \"Deshi Ln, Jackson Heights\"",
+									"                    ]",
+									"                },",
+									"                \"company_id\": {",
+									"                    \"$id\": \"#/properties/data/properties/company_id\",",
+									"                    \"type\": \"integer\",",
+									"                    \"title\": \"The company_id schema\",",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",",
+									"                    \"default\": 0,",
+									"                    \"examples\": [",
+									"                        414",
+									"                    ]",
+									"                },",
+									"                \"company_name\": {",
+									"                    \"$id\": \"#/properties/data/properties/company_name\",",
+									"                    \"type\": \"string\",",
+									"                    \"title\": \"The company_name schema\",",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",",
+									"                    \"default\": \"\",",
+									"                    \"examples\": [",
+									"                        \"Kabab Park\"",
+									"                    ]",
+									"                },",
+									"                \"tin\": {",
+									"                    \"$id\": \"#/properties/data/properties/tin\",",
+									"                    \"type\": \"string\",",
+									"                    \"title\": \"The tin schema\",",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",",
+									"                    \"default\": \"\",",
+									"                    \"examples\": [",
+									"                        \"24411391\"",
+									"                    ]",
+									"                }",
+									"            },",
+									"            \"additionalProperties\": true",
+									"        },",
+									"        \"message\": {",
+									"            \"$id\": \"#/properties/message\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The message schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"Successfully registered company 'Kabab Park' .\"",
+									"            ]",
+									"        },",
+									"        \"status\": {",
+									"            \"$id\": \"#/properties/status\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The status schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"success\"",
+									"            ]",
+									"        }",
+									"    },",
+									"    \"additionalProperties\": true",
+									"}",
+									"",
+									"pm.test('Schema is valid', function () {",
+									"   var result=tv4.validateResult(pm.response.json(),schema);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"phone_number\": \"5857086014\",\n    \"firebase_id\": \"firebase_ididid\",\n    \"secret_text\": \"the_super_secret_text\",\n    \"phone_number_int\": \"5857086014\",\n    \"iso_code\": \"US\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_auth}}/api/v1/field-force/auth/user-login",
+							"host": [
+								"{{url_auth}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"field-force",
+								"auth",
+								"user-login"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Objective:\nAs an App user, I want to login to the FFM\napp so that I can avail services available to me\n\nAcceptance Criteria:\nI should be able to login on the FFM mobile app through\nmy registered contact number.\nI will get an OTP code to verify my number.\n\nDependency: \nUsers should be registered from the company admin\npanel.  \n\nBody:\n{\n    \"phone_number\": \"5857086014\",\n    \"firebase_id\": \"firebase_ididid\",\n    \"secret_text\": \"the_super_secret_text\",\n    \"phone_number_int\": \"5857086014\",\n    \"iso_code\": \"US\"\n}\nEpected Result:\n{\n    \"auth_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDU1NzQ5NjgsImlhdCI6MTYwNDk3MDE2OCwic3ViIjo0MjAsIm1vZHVsZXMiOltdLCJ1c2VyX3R5cGUiOiJHZW5lcmFsIiwibmFtZSI6InNoYWggc3VsdGFuIiwicGhvbmVfbnVtYmVyIjoiNTg1NzA4NjAxNCIsIm1lbWJlcl90eXBlIjozfQ.KcUnHhPR2nnyllQI2WLWJr8YrUwsr5mjDeYDP-o7SUk\",\n    \"message\": \"Successfully logged in.\",\n    \"status\": \"success\"\n}\nActual Result:\n{\n    \"auth_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDU1NzQ5NjgsImlhdCI6MTYwNDk3MDE2OCwic3ViIjo0MjAsIm1vZHVsZXMiOltdLCJ1c2VyX3R5cGUiOiJHZW5lcmFsIiwibmFtZSI6InNoYWggc3VsdGFuIiwicGhvbmVfbnVtYmVyIjoiNTg1NzA4NjAxNCIsIm1lbWJlcl90eXBlIjozfQ.KcUnHhPR2nnyllQI2WLWJr8YrUwsr5mjDeYDP-o7SUk\",\n    \"message\": \"Successfully logged in.\",\n    \"status\": \"success\"\n}\nStatus Code: 200 OK\n\nTest Result: Pass\n"
+					},
+					"response": []
+				},
+				{
+					"name": "TFS_25_App user should be able to update payment status of  paid task",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0491621d-e1cb-44c6-9dae-2b78aae360c6",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"pm.test(\"Response time is less than 600ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(600);",
+									"});",
+									"",
+									"//create variable for json Data",
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"//Validate Schema for this URL",
+									"",
+									"var schema = {",
+									"    \"$schema\": \"http://json-schema.org/draft-07/schema\",",
+									"    \"$id\": \"http://example.com/example.json\",",
+									"    \"type\": \"object\",",
+									"    \"title\": \"The root schema\",",
+									"    \"description\": \"The root schema comprises the entire JSON document.\",",
+									"    \"default\": {},",
+									"    \"examples\": [",
+									"        {",
+									"            \"auth_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDM5MDI0MjMsImlhdCI6MTYwMzg5ODgyMywic3ViIjo1NDUsInVzZXJfdHlwZSI6IkRhc2hib2FyZCIsIm5hbWUiOiJmaXJzdCBsYXN0dXNlciIsImVtYWlsIjoicmFqaWJfOTk5QHlhaG9vLmNvbSIsIm1lbWJlcl90eXBlIjoyLCJjb21wYW55X2lkIjo0MDcsImRlc2lnbmF0aW9uIjpudWxsLCJkZXBhcnRtZW50IjpudWxsfQ.G3KXZpcWnlCh3MrytM6ShQ2CSXdQ3QmyvUMnBtBZTKE\",",
+									"            \"message\": \"Successfully logged in.\",",
+									"            \"status\": \"success\"",
+									"        }",
+									"    ],",
+									"    \"required\": [",
+									"        \"auth_token\",",
+									"        \"message\",",
+									"        \"status\"",
+									"    ],",
+									"    \"properties\": {",
+									"        \"auth_token\": {",
+									"            \"$id\": \"#/properties/auth_token\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The auth_token schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDM5MDI0MjMsImlhdCI6MTYwMzg5ODgyMywic3ViIjo1NDUsInVzZXJfdHlwZSI6IkRhc2hib2FyZCIsIm5hbWUiOiJmaXJzdCBsYXN0dXNlciIsImVtYWlsIjoicmFqaWJfOTk5QHlhaG9vLmNvbSIsIm1lbWJlcl90eXBlIjoyLCJjb21wYW55X2lkIjo0MDcsImRlc2lnbmF0aW9uIjpudWxsLCJkZXBhcnRtZW50IjpudWxsfQ.G3KXZpcWnlCh3MrytM6ShQ2CSXdQ3QmyvUMnBtBZTKE\"",
+									"            ]",
+									"        },",
+									"        \"message\": {",
+									"            \"$id\": \"#/properties/message\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The message schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"Successfully logged in.\"",
+									"            ]",
+									"        },",
+									"        \"status\": {",
+									"            \"$id\": \"#/properties/status\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The status schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"success\"",
+									"            ]",
+									"        }",
+									"    },",
+									"    \"additionalProperties\": true",
+									"}",
+									"",
+									"pm.test('Schema is valid', function () {",
+									"   var result=tv4.validateResult(pm.response.json(),schema);",
+									"});",
+									" ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{auth_token_app_user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{url_task_service}}/api/v1/field-force/task/update-payment/420/211",
+							"host": [
+								"{{url_task_service}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"field-force",
+								"task",
+								"update-payment",
+								"420",
+								"211"
+							]
+						},
+						"description": "Objective: As an app user, I want to update the payment status from the FFM app for the assigned task so that I can complete the assigned task to me.\n\nAcceptance Criteria: \nI can update the payment status if it becomes a paid task.\nI should be able to see the task details on the FFM app. \nDependency:\nApp users should be able to log in to the FFM through valid credentiaL.\n\nMethod: PUT\n\nExpected Result:\n{\n    \"message\": \"Payment Update successful\",\n    \"status\": \"success\"\n}\nActual Result;\n{\n    \"message\": \"Payment Update successful\",\n    \"status\": \"success\"\n}\nStatus Code: 201 CREATED\n\nTest Result: PASS\n\n"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "TFS_26_App user should be able to complete task and update on the app",
+			"item": [
+				{
+					"name": "TFS_58_1.0_App_user_should_be_able_to_login_the_FFM_mobile_app Copy 5",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c18c71bc-2b2a-4e8b-8a1c-466fa81c722f",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Response time is less than 600ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(600);",
+									"});",
+									"//create variable for json Data",
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"auth_token_app_user\",jsonData.auth_token);",
+									"",
+									"//Validate Schema for this URL",
+									"",
+									"var schema = {",
+									"    \"$schema\": \"http://json-schema.org/draft-07/schema\",",
+									"    \"$id\": \"http://example.com/example.json\",",
+									"    \"type\": \"object\",",
+									"    \"title\": \"The root schema\",",
+									"    \"description\": \"The root schema comprises the entire JSON document.\",",
+									"    \"default\": {},",
+									"    \"examples\": [",
+									"        {",
+									"            \"data\": {",
+									"                \"company_address\": \"Deshi Ln, Jackson Heights\",",
+									"                \"company_id\": 414,",
+									"                \"company_name\": \"Kabab Park\",",
+									"                \"tin\": \"24411391\"",
+									"            },",
+									"            \"message\": \"Successfully registered company 'Kabab Park' .\",",
+									"            \"status\": \"success\"",
+									"        }",
+									"    ],",
+									"    \"required\": [",
+									"        \"data\",",
+									"        \"message\",",
+									"        \"status\"",
+									"    ],",
+									"    \"properties\": {",
+									"        \"data\": {",
+									"            \"$id\": \"#/properties/data\",",
+									"            \"type\": \"object\",",
+									"            \"title\": \"The data schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": {},",
+									"            \"examples\": [",
+									"                {",
+									"                    \"company_address\": \"Deshi Ln, Jackson Heights\",",
+									"                    \"company_id\": 414,",
+									"                    \"company_name\": \"Kabab Park\",",
+									"                    \"tin\": \"24411391\"",
+									"                }",
+									"            ],",
+									"            \"required\": [",
+									"                \"company_address\",",
+									"                \"company_id\",",
+									"                \"company_name\",",
+									"                \"tin\"",
+									"            ],",
+									"            \"properties\": {",
+									"                \"company_address\": {",
+									"                    \"$id\": \"#/properties/data/properties/company_address\",",
+									"                    \"type\": \"string\",",
+									"                    \"title\": \"The company_address schema\",",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",",
+									"                    \"default\": \"\",",
+									"                    \"examples\": [",
+									"                        \"Deshi Ln, Jackson Heights\"",
+									"                    ]",
+									"                },",
+									"                \"company_id\": {",
+									"                    \"$id\": \"#/properties/data/properties/company_id\",",
+									"                    \"type\": \"integer\",",
+									"                    \"title\": \"The company_id schema\",",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",",
+									"                    \"default\": 0,",
+									"                    \"examples\": [",
+									"                        414",
+									"                    ]",
+									"                },",
+									"                \"company_name\": {",
+									"                    \"$id\": \"#/properties/data/properties/company_name\",",
+									"                    \"type\": \"string\",",
+									"                    \"title\": \"The company_name schema\",",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",",
+									"                    \"default\": \"\",",
+									"                    \"examples\": [",
+									"                        \"Kabab Park\"",
+									"                    ]",
+									"                },",
+									"                \"tin\": {",
+									"                    \"$id\": \"#/properties/data/properties/tin\",",
+									"                    \"type\": \"string\",",
+									"                    \"title\": \"The tin schema\",",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",",
+									"                    \"default\": \"\",",
+									"                    \"examples\": [",
+									"                        \"24411391\"",
+									"                    ]",
+									"                }",
+									"            },",
+									"            \"additionalProperties\": true",
+									"        },",
+									"        \"message\": {",
+									"            \"$id\": \"#/properties/message\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The message schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"Successfully registered company 'Kabab Park' .\"",
+									"            ]",
+									"        },",
+									"        \"status\": {",
+									"            \"$id\": \"#/properties/status\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The status schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"success\"",
+									"            ]",
+									"        }",
+									"    },",
+									"    \"additionalProperties\": true",
+									"}",
+									"",
+									"pm.test('Schema is valid', function () {",
+									"   var result=tv4.validateResult(pm.response.json(),schema);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"phone_number\": \"5857086014\",\n    \"firebase_id\": \"firebase_ididid\",\n    \"secret_text\": \"the_super_secret_text\",\n    \"phone_number_int\": \"5857086014\",\n    \"iso_code\": \"US\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_auth}}/api/v1/field-force/auth/user-login",
+							"host": [
+								"{{url_auth}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"field-force",
+								"auth",
+								"user-login"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Objective:\nAs an App user, I want to login to the FFM\napp so that I can avail services available to me\n\nAcceptance Criteria:\nI should be able to login on the FFM mobile app through\nmy registered contact number.\nI will get an OTP code to verify my number.\n\nDependency: \nUsers should be registered from the company admin\npanel.  \n\nBody:\n{\n    \"phone_number\": \"5857086014\",\n    \"firebase_id\": \"firebase_ididid\",\n    \"secret_text\": \"the_super_secret_text\",\n    \"phone_number_int\": \"5857086014\",\n    \"iso_code\": \"US\"\n}\nEpected Result:\n{\n    \"auth_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDU1NzQ5NjgsImlhdCI6MTYwNDk3MDE2OCwic3ViIjo0MjAsIm1vZHVsZXMiOltdLCJ1c2VyX3R5cGUiOiJHZW5lcmFsIiwibmFtZSI6InNoYWggc3VsdGFuIiwicGhvbmVfbnVtYmVyIjoiNTg1NzA4NjAxNCIsIm1lbWJlcl90eXBlIjozfQ.KcUnHhPR2nnyllQI2WLWJr8YrUwsr5mjDeYDP-o7SUk\",\n    \"message\": \"Successfully logged in.\",\n    \"status\": \"success\"\n}\nActual Result:\n{\n    \"auth_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDU1NzQ5NjgsImlhdCI6MTYwNDk3MDE2OCwic3ViIjo0MjAsIm1vZHVsZXMiOltdLCJ1c2VyX3R5cGUiOiJHZW5lcmFsIiwibmFtZSI6InNoYWggc3VsdGFuIiwicGhvbmVfbnVtYmVyIjoiNTg1NzA4NjAxNCIsIm1lbWJlcl90eXBlIjozfQ.KcUnHhPR2nnyllQI2WLWJr8YrUwsr5mjDeYDP-o7SUk\",\n    \"message\": \"Successfully logged in.\",\n    \"status\": \"success\"\n}\nStatus Code: 200 OK\n\nTest Result: Pass\n"
+					},
+					"response": []
+				},
+				{
+					"name": "TFS_26_App user should be able to complete task and update on the app",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8fcd3952-7199-4154-9b5a-7c3a53863bc9",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"pm.test(\"Response time is less than 600ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(600);",
+									"});",
+									"",
+									"//create variable for json Data",
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"//Validate Schema for this URL",
+									"",
+									"var schema = {",
+									"    \"$schema\": \"http://json-schema.org/draft-07/schema\",",
+									"    \"$id\": \"http://example.com/example.json\",",
+									"    \"type\": \"object\",",
+									"    \"title\": \"The root schema\",",
+									"    \"description\": \"The root schema comprises the entire JSON document.\",",
+									"    \"default\": {},",
+									"    \"examples\": [",
+									"        {",
+									"            \"auth_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDM5MDI0MjMsImlhdCI6MTYwMzg5ODgyMywic3ViIjo1NDUsInVzZXJfdHlwZSI6IkRhc2hib2FyZCIsIm5hbWUiOiJmaXJzdCBsYXN0dXNlciIsImVtYWlsIjoicmFqaWJfOTk5QHlhaG9vLmNvbSIsIm1lbWJlcl90eXBlIjoyLCJjb21wYW55X2lkIjo0MDcsImRlc2lnbmF0aW9uIjpudWxsLCJkZXBhcnRtZW50IjpudWxsfQ.G3KXZpcWnlCh3MrytM6ShQ2CSXdQ3QmyvUMnBtBZTKE\",",
+									"            \"message\": \"Successfully logged in.\",",
+									"            \"status\": \"success\"",
+									"        }",
+									"    ],",
+									"    \"required\": [",
+									"        \"auth_token\",",
+									"        \"message\",",
+									"        \"status\"",
+									"    ],",
+									"    \"properties\": {",
+									"        \"auth_token\": {",
+									"            \"$id\": \"#/properties/auth_token\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The auth_token schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDM5MDI0MjMsImlhdCI6MTYwMzg5ODgyMywic3ViIjo1NDUsInVzZXJfdHlwZSI6IkRhc2hib2FyZCIsIm5hbWUiOiJmaXJzdCBsYXN0dXNlciIsImVtYWlsIjoicmFqaWJfOTk5QHlhaG9vLmNvbSIsIm1lbWJlcl90eXBlIjoyLCJjb21wYW55X2lkIjo0MDcsImRlc2lnbmF0aW9uIjpudWxsLCJkZXBhcnRtZW50IjpudWxsfQ.G3KXZpcWnlCh3MrytM6ShQ2CSXdQ3QmyvUMnBtBZTKE\"",
+									"            ]",
+									"        },",
+									"        \"message\": {",
+									"            \"$id\": \"#/properties/message\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The message schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"Successfully logged in.\"",
+									"            ]",
+									"        },",
+									"        \"status\": {",
+									"            \"$id\": \"#/properties/status\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The status schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"success\"",
+									"            ]",
+									"        }",
+									"    },",
+									"    \"additionalProperties\": true",
+									"}",
+									"",
+									"pm.test('Schema is valid', function () {",
+									"   var result=tv4.validateResult(pm.response.json(),schema);",
+									"});",
+									" ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{auth_token_app_user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"notes\":\"Deliverd on time successfully...\",\n\"bill_amount\": 110.99,\n\"billing_address\": \"amr ghor 3262\",\n\"task_complete_location_lattitude\": \"54.43\",\n\"task_complete_location_longitude\": \"43.42\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_task_service}}/api/v1/field-force/task/complete-task/420/211",
+							"host": [
+								"{{url_task_service}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"field-force",
+								"task",
+								"complete-task",
+								"420",
+								"211"
+							]
+						},
+						"description": "Objective: As an app user, I want to submit the assigned task so that I can complete my assigned task.\n\nAcceptance Criteria:  \nI can see the assigned task on my FFM app.                                                        \nAfter completing task I can update through the FFM app.\nThe company admin should be able to get an update of my action item.\n\nDependencies: \nCompany admin should be able to login with valid credentials.\nCompany admin should create a user before assign them.\n\nMethod: PUT\n\nBody:\n{\n\"notes\":\"Deliverd on time successfully...\",\n\"bill_amount\": 110.99,\n\"billing_address\": \"amr ghor 3262\",\n\"task_complete_location_lattitude\": \"54.43\",\n\"task_complete_location_longitude\": \"43.42\"\n}\nExpected Result:\n{\n    \"message\": \"Successfully completed task\",\n    \"status\": \"success\"\n}\nActual Result:\n{\n    \"message\": \"Successfully completed task\",\n    \"status\": \"success\"\n}\nStatus Code: 201 CREATED\n\nTest Result: PASS\n\n"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "TFS_27_App user should be able to upload delivery image",
+			"item": [
+				{
+					"name": "TFS_58_1.0_App_user_should_be_able_to_login_the_FFM_mobile_app Copy 6",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4c4a2ea9-5065-41c0-8d7c-15125ee207fa",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Response time is less than 600ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(600);",
+									"});",
+									"//create variable for json Data",
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"auth_token_app_user\",jsonData.auth_token);",
+									"",
+									"//Validate Schema for this URL",
+									"",
+									"var schema = {",
+									"    \"$schema\": \"http://json-schema.org/draft-07/schema\",",
+									"    \"$id\": \"http://example.com/example.json\",",
+									"    \"type\": \"object\",",
+									"    \"title\": \"The root schema\",",
+									"    \"description\": \"The root schema comprises the entire JSON document.\",",
+									"    \"default\": {},",
+									"    \"examples\": [",
+									"        {",
+									"            \"data\": {",
+									"                \"company_address\": \"Deshi Ln, Jackson Heights\",",
+									"                \"company_id\": 414,",
+									"                \"company_name\": \"Kabab Park\",",
+									"                \"tin\": \"24411391\"",
+									"            },",
+									"            \"message\": \"Successfully registered company 'Kabab Park' .\",",
+									"            \"status\": \"success\"",
+									"        }",
+									"    ],",
+									"    \"required\": [",
+									"        \"data\",",
+									"        \"message\",",
+									"        \"status\"",
+									"    ],",
+									"    \"properties\": {",
+									"        \"data\": {",
+									"            \"$id\": \"#/properties/data\",",
+									"            \"type\": \"object\",",
+									"            \"title\": \"The data schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": {},",
+									"            \"examples\": [",
+									"                {",
+									"                    \"company_address\": \"Deshi Ln, Jackson Heights\",",
+									"                    \"company_id\": 414,",
+									"                    \"company_name\": \"Kabab Park\",",
+									"                    \"tin\": \"24411391\"",
+									"                }",
+									"            ],",
+									"            \"required\": [",
+									"                \"company_address\",",
+									"                \"company_id\",",
+									"                \"company_name\",",
+									"                \"tin\"",
+									"            ],",
+									"            \"properties\": {",
+									"                \"company_address\": {",
+									"                    \"$id\": \"#/properties/data/properties/company_address\",",
+									"                    \"type\": \"string\",",
+									"                    \"title\": \"The company_address schema\",",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",",
+									"                    \"default\": \"\",",
+									"                    \"examples\": [",
+									"                        \"Deshi Ln, Jackson Heights\"",
+									"                    ]",
+									"                },",
+									"                \"company_id\": {",
+									"                    \"$id\": \"#/properties/data/properties/company_id\",",
+									"                    \"type\": \"integer\",",
+									"                    \"title\": \"The company_id schema\",",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",",
+									"                    \"default\": 0,",
+									"                    \"examples\": [",
+									"                        414",
+									"                    ]",
+									"                },",
+									"                \"company_name\": {",
+									"                    \"$id\": \"#/properties/data/properties/company_name\",",
+									"                    \"type\": \"string\",",
+									"                    \"title\": \"The company_name schema\",",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",",
+									"                    \"default\": \"\",",
+									"                    \"examples\": [",
+									"                        \"Kabab Park\"",
+									"                    ]",
+									"                },",
+									"                \"tin\": {",
+									"                    \"$id\": \"#/properties/data/properties/tin\",",
+									"                    \"type\": \"string\",",
+									"                    \"title\": \"The tin schema\",",
+									"                    \"description\": \"An explanation about the purpose of this instance.\",",
+									"                    \"default\": \"\",",
+									"                    \"examples\": [",
+									"                        \"24411391\"",
+									"                    ]",
+									"                }",
+									"            },",
+									"            \"additionalProperties\": true",
+									"        },",
+									"        \"message\": {",
+									"            \"$id\": \"#/properties/message\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The message schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"Successfully registered company 'Kabab Park' .\"",
+									"            ]",
+									"        },",
+									"        \"status\": {",
+									"            \"$id\": \"#/properties/status\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The status schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"success\"",
+									"            ]",
+									"        }",
+									"    },",
+									"    \"additionalProperties\": true",
+									"}",
+									"",
+									"pm.test('Schema is valid', function () {",
+									"   var result=tv4.validateResult(pm.response.json(),schema);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"phone_number\": \"5857086014\",\n    \"firebase_id\": \"firebase_ididid\",\n    \"secret_text\": \"the_super_secret_text\",\n    \"phone_number_int\": \"5857086014\",\n    \"iso_code\": \"US\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_auth}}/api/v1/field-force/auth/user-login",
+							"host": [
+								"{{url_auth}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"field-force",
+								"auth",
+								"user-login"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Objective:\nAs an App user, I want to login to the FFM\napp so that I can avail services available to me\n\nAcceptance Criteria:\nI should be able to login on the FFM mobile app through\nmy registered contact number.\nI will get an OTP code to verify my number.\n\nDependency: \nUsers should be registered from the company admin\npanel.  \n\nBody:\n{\n    \"phone_number\": \"5857086014\",\n    \"firebase_id\": \"firebase_ididid\",\n    \"secret_text\": \"the_super_secret_text\",\n    \"phone_number_int\": \"5857086014\",\n    \"iso_code\": \"US\"\n}\nEpected Result:\n{\n    \"auth_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDU1NzQ5NjgsImlhdCI6MTYwNDk3MDE2OCwic3ViIjo0MjAsIm1vZHVsZXMiOltdLCJ1c2VyX3R5cGUiOiJHZW5lcmFsIiwibmFtZSI6InNoYWggc3VsdGFuIiwicGhvbmVfbnVtYmVyIjoiNTg1NzA4NjAxNCIsIm1lbWJlcl90eXBlIjozfQ.KcUnHhPR2nnyllQI2WLWJr8YrUwsr5mjDeYDP-o7SUk\",\n    \"message\": \"Successfully logged in.\",\n    \"status\": \"success\"\n}\nActual Result:\n{\n    \"auth_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDU1NzQ5NjgsImlhdCI6MTYwNDk3MDE2OCwic3ViIjo0MjAsIm1vZHVsZXMiOltdLCJ1c2VyX3R5cGUiOiJHZW5lcmFsIiwibmFtZSI6InNoYWggc3VsdGFuIiwicGhvbmVfbnVtYmVyIjoiNTg1NzA4NjAxNCIsIm1lbWJlcl90eXBlIjozfQ.KcUnHhPR2nnyllQI2WLWJr8YrUwsr5mjDeYDP-o7SUk\",\n    \"message\": \"Successfully logged in.\",\n    \"status\": \"success\"\n}\nStatus Code: 200 OK\n\nTest Result: Pass\n"
+					},
+					"response": []
+				},
+				{
+					"name": "TFS_27_App user should be able to upload delivery image",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "45894996-2cd0-44d3-8379-d216456eacdb",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"pm.test(\"Response time is less than 600ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(600);",
+									"});",
+									"",
+									"//create variable for json Data",
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"//Validate Schema for this URL",
+									"",
+									"var schema = {",
+									"    \"$schema\": \"http://json-schema.org/draft-07/schema\",",
+									"    \"$id\": \"http://example.com/example.json\",",
+									"    \"type\": \"object\",",
+									"    \"title\": \"The root schema\",",
+									"    \"description\": \"The root schema comprises the entire JSON document.\",",
+									"    \"default\": {},",
+									"    \"examples\": [",
+									"        {",
+									"            \"auth_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDM5MDI0MjMsImlhdCI6MTYwMzg5ODgyMywic3ViIjo1NDUsInVzZXJfdHlwZSI6IkRhc2hib2FyZCIsIm5hbWUiOiJmaXJzdCBsYXN0dXNlciIsImVtYWlsIjoicmFqaWJfOTk5QHlhaG9vLmNvbSIsIm1lbWJlcl90eXBlIjoyLCJjb21wYW55X2lkIjo0MDcsImRlc2lnbmF0aW9uIjpudWxsLCJkZXBhcnRtZW50IjpudWxsfQ.G3KXZpcWnlCh3MrytM6ShQ2CSXdQ3QmyvUMnBtBZTKE\",",
+									"            \"message\": \"Successfully logged in.\",",
+									"            \"status\": \"success\"",
+									"        }",
+									"    ],",
+									"    \"required\": [",
+									"        \"auth_token\",",
+									"        \"message\",",
+									"        \"status\"",
+									"    ],",
+									"    \"properties\": {",
+									"        \"auth_token\": {",
+									"            \"$id\": \"#/properties/auth_token\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The auth_token schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDM5MDI0MjMsImlhdCI6MTYwMzg5ODgyMywic3ViIjo1NDUsInVzZXJfdHlwZSI6IkRhc2hib2FyZCIsIm5hbWUiOiJmaXJzdCBsYXN0dXNlciIsImVtYWlsIjoicmFqaWJfOTk5QHlhaG9vLmNvbSIsIm1lbWJlcl90eXBlIjoyLCJjb21wYW55X2lkIjo0MDcsImRlc2lnbmF0aW9uIjpudWxsLCJkZXBhcnRtZW50IjpudWxsfQ.G3KXZpcWnlCh3MrytM6ShQ2CSXdQ3QmyvUMnBtBZTKE\"",
+									"            ]",
+									"        },",
+									"        \"message\": {",
+									"            \"$id\": \"#/properties/message\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The message schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"Successfully logged in.\"",
+									"            ]",
+									"        },",
+									"        \"status\": {",
+									"            \"$id\": \"#/properties/status\",",
+									"            \"type\": \"string\",",
+									"            \"title\": \"The status schema\",",
+									"            \"description\": \"An explanation about the purpose of this instance.\",",
+									"            \"default\": \"\",",
+									"            \"examples\": [",
+									"                \"success\"",
+									"            ]",
+									"        }",
+									"    },",
+									"    \"additionalProperties\": true",
+									"}",
+									"",
+									"pm.test('Schema is valid', function () {",
+									"   var result=tv4.validateResult(pm.response.json(),schema);",
+									"});",
+									" ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{auth_token_app_user}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "photo",
+									"type": "file",
+									"src": "/Users/rajib/Desktop/Screen Shot 2020-11-24 at 10.20.35 PM.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url_task_service}}/api/v1/field-force/task/upload-task-photo/420/211",
+							"host": [
+								"{{url_task_service}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"field-force",
+								"task",
+								"upload-task-photo",
+								"420",
+								"211"
+							]
+						},
+						"description": "BRD:\nApp user should be able to upload delivery image\n\nObjective: As an app user, I want to upload an image against the completed task so that I can assure the company admin that this delivery is completed successfully.\n\nAcceptance Criteria: \nI should be able to take a picture of the invoice or the surrounding place of the task where I complete it.\nAfter uploading the image I can complete the task action item and update it on the FFM app.\nDependency:\nApp users should be able to log in to the FFM through valid credentials.\n\nBody: \nFor input payload,\nbody-->form-data and select key=File and name it \"photo\"\nvalue=\"select files\" from computer\n\nExpected Result:\n{\n    \"message\": \"Photo upload successful\",\n    \"status\": \"success\"\n}\nActual Result:\n{\n    \"message\": \"Photo upload successful\",\n    \"status\": \"success\"\n}\nStatus Code: 201 CREATED\n\nTest Result: PASS\n"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
